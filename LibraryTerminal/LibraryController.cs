@@ -86,18 +86,18 @@ namespace LibraryTerminal
                         properties = text.Split('|');
                         if (properties[2] == "book")
                         {
-                            mediaList.Add(new Book(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
+                            //mediaList.Add(new Book(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
                         }
                         else if (properties[2] == "cd")
                         {
-                            mediaList.Add(new CD(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
+                            //mediaList.Add(new CD(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
                         }
                         else if (properties[2] == "magazine")
                         {
-                            mediaList.Add(new Magazine(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
+                            //mediaList.Add(new Magazine(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
                         }
                         else
-                            mediaList.Add(new Movie(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
+                            //mediaList.Add(new Movie(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
                         text = reader.ReadLine();
                     }
                     if (mediaList.Count > 0)
@@ -264,39 +264,39 @@ namespace LibraryTerminal
             return text.Trim().ToLower();
         } //end UserInput
 
-        public void NewMedia()
-        {
-            Media newMedia = null;
-            string text;
-            bool resume = true;
-            while (resume)
-            {
-                text = UserInput("Media Type");
-                switch (text)
-                {
-                    case "book":
-                        newMedia = new Book { Title = MultipleWordIndent(UserInput("Title")), Author = MultipleWordIndent(UserInput("Author")), MediaType = MultipleWordIndent(text) };
-                        resume = false;
-                        break;
-                    case "movie":
-                        newMedia = new Movie { Title = MultipleWordIndent(UserInput("Title")), Author = MultipleWordIndent(UserInput("Author")), MediaType = MultipleWordIndent(text) };
-                        resume = false;
-                        break;
-                    case "cd":
-                        newMedia = new CD { Title = MultipleWordIndent(UserInput("Title")), Author = MultipleWordIndent(UserInput("Author")), MediaType = MultipleWordIndent(text) };
-                        resume = false;
-                        break;
-                    case "magazine":
-                        newMedia = new Magazine { Title = MultipleWordIndent(UserInput("Title")), Author = MultipleWordIndent(UserInput("Author")), MediaType = MultipleWordIndent(text) };
-                        resume = false;
-                        break;
-                    default:
-                        LibraryView.PromptUser(unsupportedMedia);
-                        break;
-                }
-            }
-            CheckListForEntry(newMedia);
-        } //end NewCountry
+        //public void NewMedia()
+        //{
+        //    Media newMedia = null;
+        //    string text;
+        //    bool resume = true;
+        //    while (resume)
+        //    {
+        //        text = UserInput("Media Type");
+        //        switch (text)
+        //        {
+        //            case "book":
+        //                newMedia = new Book { Title = MultipleWordIndent(UserInput("Title")), Author = MultipleWordIndent(UserInput("Author")), MediaType = MultipleWordIndent(text) };
+        //                resume = false;
+        //                break;
+        //            case "movie":
+        //                newMedia = new Movie { Title = MultipleWordIndent(UserInput("Title")), Author = MultipleWordIndent(UserInput("Author")), MediaType = MultipleWordIndent(text) };
+        //                resume = false;
+        //                break;
+        //            case "cd":
+        //                newMedia = new CD { Title = MultipleWordIndent(UserInput("Title")), Author = MultipleWordIndent(UserInput("Author")), MediaType = MultipleWordIndent(text) };
+        //                resume = false;
+        //                break;
+        //            case "magazine":
+        //                newMedia = new Magazine { Title = MultipleWordIndent(UserInput("Title")), Author = MultipleWordIndent(UserInput("Author")), MediaType = MultipleWordIndent(text) };
+        //                resume = false;
+        //                break;
+        //            default:
+        //                LibraryView.PromptUser(unsupportedMedia);
+        //                break;
+        //        }
+        //    }
+        //    CheckListForEntry(newMedia);
+        //} //end NewCountry
 
         public void MainMenu(int selection)
         {
@@ -318,7 +318,7 @@ namespace LibraryTerminal
                     }
                     break;
                 case 2:
-                    NewMedia();
+                    //NewMedia();
                     break;
                 case 3:
                     if (Media.Count > 0)

@@ -6,8 +6,11 @@ namespace LibraryTerminal
     {
         static void Main(string[] args)
         {
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.MenuSelection();
+            //MainMenu mainMenu = new MainMenu();
+            //mainMenu.MenuSelection();
+
+            LibraryController controller = new LibraryController();
+            controller.StartHere();
         }
     }
 }
