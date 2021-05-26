@@ -391,6 +391,7 @@ namespace LibraryTerminal
                 }
             }
             LibraryView.DisplayMedias(SearchList);
+            CheckoutMenu();
         } //end SearchByTitle
 
         public void SearchByAuthor()
@@ -404,6 +405,7 @@ namespace LibraryTerminal
                 }
             }
             LibraryView.DisplayMedias(SearchList);
+            CheckoutMenu();
         } //end SearchByAuthor
 
         public void DeleteSavedFile()
