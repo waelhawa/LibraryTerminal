@@ -1,3 +1,6 @@
-Star Wars|Someone|Cd|False|1/1/0001 12:00:00 AM
+star wars|someone|cd|True|6/9/2021 9:07:56 PM
 Star Wars 2|Someone|Cd|False|1/1/0001 12:00:00 AM
 Star Gate|Someone Else|Cd|False|1/1/0001 12:00:00 AM
+Harry Potter|Jk Rowling|Book|False|1/1/0001 12:00:00 AM
+Legally Blonde|Sdlg|Movie|False|1/1/0001 12:00:00 AM
+Stark Trek|Not Sure|Movie|False|1/1/0001 12:00:00 AM

@@ -26,7 +26,7 @@ namespace LibraryTerminal
         const string exitMessage = "Goodbye!";
         const string emptyFieldError = "Field cannot be empty";
         const string unsupportedMedia = "This media type is not supported";
-        static readonly string [] menu = {"Display Library", "Add Media", "Remove Media", "Save to file", "Load from file", "Delete saved file", "Search by...", "Checkout", "Exit" };
+        static readonly string [] menu = {"Display Library", "Add Media", "Remove Media", "Save to file", "Load from file", "Delete saved file", "Search by...", "Return an item", "Exit" };
         static readonly string[] searchMenu = { "Search by Title", "Search by Author", "Back to Main Menu" };
         public List<Media> Media { get; set; }
         public List<Media> SearchList { get; set; }
@@ -350,9 +350,11 @@ namespace LibraryTerminal
                     SearchMenu();
                     break;
                 case 8:
+                    ReturnMedia();
                     break;
                 default:
                     LibraryView.PromptUser(exitMessage);
+                    Environment.Exit(0);
                     break;
             }
         } //end MainMenu
@@ -376,13 +378,27 @@ namespace LibraryTerminal
         } //end SearchMenu
 
         public void CheckoutMenu ()
-        {
+        {   //1. select from the searchlist the item they want to checkout
 
+            LibraryView.DisplayMedias(SearchList);
+
+            //getting the user menu selection
+            int menuItem = MenuSelection(1, SearchList.Count) - 1;
+
+            //checking it out and setting the duedate
+            SearchList[menuItem].CheckedOut = true;
+            SearchList[menuItem].DueDate = DateTime.Now.AddDays(14);            
+
+            Console.WriteLine("You have checked out this item.");
+            Console.WriteLine($"Due date: {SearchList[menuItem].DueDate}");
+            SearchList.Clear();
+            StartHere();
         }
 
         public void SeachByTitle()
         {
             string text = UserInput("Title");
+            //bool checker;
             foreach (Media media in Media)
             {
                 if (media.Title.ToLower().Contains(text.ToLower()))
@@ -391,12 +407,46 @@ namespace LibraryTerminal
                 }
             }
             LibraryView.DisplayMedias(SearchList);
-            CheckoutMenu();
+            // checking if the user wants to check out an item from the list
+
+            
+            
+                //checker = Verification("Would you like to check out an item? ", yesOrNoError); //checker will be T/F
+
+                if ( SearchList.Count > 0 && Verification("Would you like to check out an item? ", yesOrNoError))
+                {
+                    CheckoutMenu();
+                }
+                else
+                {
+                    StartHere();
+                }
+            
+
+            
         } //end SearchByTitle
 
         public void SearchByAuthor()
         {
+            List<string> authors = new List<string>();
+                        
+            //bool checker;
+
+            foreach (Media media in Media)
+            {
+                if (!authors.Contains(media.Author))
+                {
+                    authors.Add(media.Author);
+                }
+            }
+
+            foreach (string author in authors)
+            {
+                Console.WriteLine(author);
+            }
+
             string text = UserInput("Author");
+
             foreach (Media media in Media)
             {
                 if (media.Author.ToLower().Equals(text.ToLower()))
@@ -404,9 +454,53 @@ namespace LibraryTerminal
                     SearchList.Add(media);
                 }
             }
+
             LibraryView.DisplayMedias(SearchList);
-            CheckoutMenu();
+            //checker = Verification("Would you like to check out an item? ", yesOrNoError); //checker will be T/F
+
+            if (SearchList.Count > 0 && Verification("Would you like to check out an item? ", yesOrNoError))
+            {
+                CheckoutMenu();
+            }
+            else
+            {
+                StartHere();
+            }
+                        
         } //end SearchByAuthor
+
+        public void ReturnMedia()  //the user selects an item from the checkedout list to return an item
+        {
+            foreach (Media media in Media)
+            {
+                if (media.CheckedOut) //if the item is checked, add it to the checkoutlist.
+                {
+                    CheckoutList.Add(media);
+                    
+                }
+            }
+
+            LibraryView.DisplayMedias(CheckoutList); //diplay the checkout list
+            int menuSelection = MenuSelection(1, CheckoutList.Count) - 1;
+
+            //checking if the item is overdue
+            
+            if (DateTime.Now.CompareTo(CheckoutList[menuSelection].DueDate) >= 0)
+            {
+                Console.WriteLine("This item is overdue.");
+                CheckoutList[menuSelection].CheckedOut = false;
+                
+            } else 
+            {
+                Console.WriteLine("Thank you for returning the item on time.");
+                CheckoutList[menuSelection].CheckedOut = false;
+            }
+
+            CheckoutList.Clear();
+            StartHere();
+
+        }
+
 
         public void DeleteSavedFile()
         {
@@ -430,6 +524,17 @@ namespace LibraryTerminal
             {
                 int item = MenuSelection(1, Media.Count);
                 LibraryView.DisplayMedia(Media[item - 1]);
+                if (!Media[item - 1].CheckedOut)
+                {
+                    if (Verification("Item is available. Would you like to check it out? ", yesOrNoError))
+                    {
+                        SearchList.Add(Media[item - 1]);
+                        CheckoutMenu();
+                    } else
+                    {
+                        StartHere();
+                    }
+                }
                 MainMenu(1);
             }
             else
