@@ -15,6 +15,7 @@ namespace LibraryTerminal
         {
 
         }
+
         public CD(string title, string author, string mediaType, bool checkedOut, DateTime dueDate) : base(title, author, mediaType, checkedOut, dueDate)
         {
 

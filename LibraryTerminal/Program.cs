@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LibraryTerminal
 {
@@ -6,8 +7,11 @@ namespace LibraryTerminal
     {
         static void Main(string[] args)
         {
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.MenuSelection();
+            LibraryController c = new LibraryController();
+            c.Media = new List<Media>();
+            c.CheckoutList = new List<Media>();
+            c.SearchList = new List<Media>();
+            c.PreLoad();
         }
     }
 }

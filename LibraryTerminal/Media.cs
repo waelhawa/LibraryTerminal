@@ -16,6 +16,7 @@ namespace LibraryTerminal
         public Media()
         {
         }
+
         public Media(string title, string author, string mediaType, bool checkedOut, DateTime dueDate)
         {
             Title = title;
@@ -24,6 +25,7 @@ namespace LibraryTerminal
             CheckedOut = checkedOut;
             DueDate = dueDate;
         }
+
         public Media(string title, string author, string mediaType)
         {
             Title = title;
