@@ -4,7 +4,8 @@ using System.Text;
 
 namespace LibraryTerminal
 {
-    class Magazine : Media 
+    class Magazine : Media
+    // A class that inherits properties from the parent "Media" class.
     {
         public Magazine()
         {

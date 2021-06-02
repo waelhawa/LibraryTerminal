@@ -7,6 +7,7 @@ namespace LibraryTerminal
 {
     class LibraryController
     {
+        //Predefined messages and errors for the user.
         const string fileName = "Library";
         const string overrideConfirmation = "Are you sure you want to override existing file? (Y/N): ";
         const string yesOrNoError = "Please select Y or N";
@@ -26,12 +27,16 @@ namespace LibraryTerminal
         const string exitMessage = "Goodbye!";
         const string emptyFieldError = "Field cannot be empty";
         const string unsupportedMedia = "This media type is not supported";
+
+        //Predefined menu items
         static readonly string [] menu = {"Display Library", "Add Media", "Remove Media", "Save to file", "Load from file", "Delete saved file", "Search by...", "Return an item", "Exit" };
         static readonly string[] searchMenu = { "Search by Title", "Search by Author", "Back to Main Menu" };
-        public List<Media> Media { get; set; }
-        public List<Media> SearchList { get; set; }
-        public List<Media> CheckoutList { get; set; }
 
+        public List<Media> Media { get; set; } //Main properties that holds the main list of media.
+        public List<Media> SearchList { get; set; } //Holds a list of media the user searches for.
+        public List<Media> CheckoutList { get; set; } //Holds the list of items currently checked out of the library
+
+        //Reads the main list and saves it to a file.
         public void Save(List<Media> list, string fileName)
         {
             StreamWriter writer = new StreamWriter($"../../../{fileName}.txt");
@@ -42,21 +47,8 @@ namespace LibraryTerminal
             writer.Close();
         } //end Save
 
-        //public void CheckSavedFile(List<Media> mediaList)
-        //{
-        //    if (File.Exists($"../../../{fileName}.txt"))
-        //    {
-        //        if (Verification(overrideConfirmation, yesOrNoError))
-        //        {
-        //            Save(mediaList, fileName);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Save(mediaList, fileName);
-        //    }
-        //} //end CheckSavedFile
 
+       //Checks if there is a saved file, and prompts the user to load a file.
         public void PreLoad()
         {
             if (File.Exists($"../../../{fileName}.txt"))
@@ -70,6 +62,8 @@ namespace LibraryTerminal
             StartHere();
         } //end PreLoad
 
+        //Read the text file and load its contents into the main menu.
+        //Creates a corresponding object to each media.
         public void Load(List<Media> mediaList, string fileName, bool preLoadVerified)
         {
             if (preLoadVerified || Verification(confirmLoad, yesOrNoError))
@@ -102,7 +96,7 @@ namespace LibraryTerminal
                     }
                     if (mediaList.Count > 0)
                     {
-                        LibraryView.DisplayMedias(mediaList);
+                        //LibraryView.DisplayMedias(mediaList);
                     }
                     else
                     {
@@ -122,6 +116,8 @@ namespace LibraryTerminal
 
         } //end Load
 
+        //Checks if there is a saved file, and returns a reference to the reader object. 
+        //Returns null if there is no file
         public StreamReader ReadFile(string fileName)
         {
             try
@@ -136,6 +132,8 @@ namespace LibraryTerminal
             }
         } //end ReadFile
 
+        //Checks if there is a save file, and if the user wants to override the file.
+        //If no file exists the file is saved.
         public void CheckSavedFile()
         {
             if (File.Exists($"../../../{fileName}.txt"))
@@ -151,17 +149,20 @@ namespace LibraryTerminal
             }
         } //end CheckSavedFile
 
+        //Adds media to a list of other media.
         public void AddToList(Media media)
         {
             Media.Add(media);
         } //end AddToList
 
+        //Allows the user to remove references to the media, and removes that specific media.
         public void RemoveFromList(Media media)
         {
             Media.Remove(media);
             LibraryView.PromptUser(success);
         } //end RemoveFromList
 
+        //Checks if there is already a media that exists with the name.
         public void CheckListForEntry(Media media)
         {
             bool exists = false;
@@ -186,6 +187,7 @@ namespace LibraryTerminal
             }
         } //end CheckListForEntry
 
+        //Makes sure the number returned is an integer.
         public int IntegerEntry(string phrase, string error)
         {
             string text;
@@ -205,6 +207,7 @@ namespace LibraryTerminal
             }
         } //end IntegerEntry
 
+        //If the item specified is within the menu range the selection will be valid.
         public int MenuSelection(int menuStart, int menuEnd)
         {
             int item;
@@ -222,6 +225,7 @@ namespace LibraryTerminal
             }
         } //End MenuSelection
 
+        //Returns a validation of yes, or no.
         public bool Verification(string phrase, string error)
         {
             string text;
@@ -249,6 +253,7 @@ namespace LibraryTerminal
             }
         } //end Verification
 
+        //Beginning of the program.
         public void StartHere()
         {
             LibraryView.DisplayMainMenu(menu);
@@ -256,6 +261,7 @@ namespace LibraryTerminal
             MainMenu(selection);
         } //end StartHere
 
+        //Takes in user input as text.
         public string UserInput(string property)
         {
             string text;
@@ -264,6 +270,7 @@ namespace LibraryTerminal
             return text.Trim().ToLower();
         } //end UserInput
 
+        //Allows the user to create a new media specified by the media type the user chooses.
         public void NewMedia()
         {
             Media newMedia = null;
@@ -298,6 +305,7 @@ namespace LibraryTerminal
             CheckListForEntry(newMedia);
         } //end NewCountry
 
+        //The menu where the user begins, and decides how to use/enable to program and its options.
         public void MainMenu(int selection)
         {
             bool verifyChoice;
@@ -359,6 +367,7 @@ namespace LibraryTerminal
             }
         } //end MainMenu
 
+        //Allows the user to search for a media by a title keyword, or by an author.
         public void SearchMenu()
         {
             LibraryView.DisplayMainMenu(searchMenu);
@@ -377,6 +386,7 @@ namespace LibraryTerminal
             }
         } //end SearchMenu
 
+        //Checks out whatever is in the search list.
         public void CheckoutMenu ()
         {   //1. select from the searchlist the item they want to checkout
 
@@ -395,6 +405,7 @@ namespace LibraryTerminal
             StartHere();
         }
 
+        //Searches the list of media based on a keyword entered by the user.
         public void SeachByTitle()
         {
             string text = UserInput("Title");
@@ -426,6 +437,8 @@ namespace LibraryTerminal
             
         } //end SearchByTitle
 
+        //Displays a list of authors for the user to choose from.
+        //The user enters the selected author, and associated media are returned.
         public void SearchByAuthor()
         {
             List<string> authors = new List<string>();
@@ -501,7 +514,7 @@ namespace LibraryTerminal
 
         }
 
-
+        //Prompts the used to delete the saved file.
         public void DeleteSavedFile()
         {
             if (File.Exists($"../../../{fileName}.txt"))
@@ -518,6 +531,7 @@ namespace LibraryTerminal
             }
         } //end DeleteSavedFile
 
+        //Shows the entire list of media in the "library".
         public void SubMenuOne(bool choice)
         {
             if (choice)
@@ -543,11 +557,13 @@ namespace LibraryTerminal
             }
         } //end SubMenuOne
 
+        //Capitalizes the first letter of the input text, and puts the remainder to lower case.
         public string Indent(string text)
         {
             return text.Substring(0, 1).ToUpper() + text.Substring(1).ToLower();
         } //end Indent
 
+        //Capitalizes the first letter of each word input by the user.
         public string MultipleWordIndent(string text)
         {
             string[] words;
