@@ -12,9 +12,9 @@ namespace LibraryTerminal
         public bool CheckedOut { get; set; }
         public DateTime DueDate { get; set; }
 
+
         public Media()
         {
-
         }
 
         public Media(string title, string author, string mediaType, bool checkedOut, DateTime dueDate)
@@ -24,7 +24,6 @@ namespace LibraryTerminal
             MediaType = mediaType;
             CheckedOut = checkedOut;
             DueDate = dueDate;
-
         }
 
         public Media(string title, string author, string mediaType)
@@ -33,7 +32,8 @@ namespace LibraryTerminal
             Author = author;
             MediaType = mediaType;
             CheckedOut = false;
-
         }
+
+    
     }
 } //Media something = new Book or CD or...()

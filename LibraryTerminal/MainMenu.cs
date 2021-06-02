@@ -17,7 +17,7 @@ namespace LibraryTerminal
             Console.WriteLine("6. Return a book/media");
         }
 
-        public void MenuSelection()
+        public static void MenuSelection()
         {
             DisplayMenu();
 
@@ -50,7 +50,7 @@ namespace LibraryTerminal
             }
 
         }
-            public int ValidateMenuSelection()
+            public static int ValidateMenuSelection()
             {
                 Console.WriteLine("Please enter a menu number:");
             int userSelection;
@@ -71,7 +71,7 @@ namespace LibraryTerminal
         // display the available options
         // Prompt the user for final selection.
 
-        public void SearchByAuthor(List<Media> mediaList)
+        public static void SearchByAuthor(List<Media> mediaList)
         {
             List<Media> searchList = new List<Media>();
             Console.WriteLine("Please input author's name");
@@ -93,7 +93,7 @@ namespace LibraryTerminal
             // display media with that author
         }
 
-        public void SearchByTitle(List<Media> mediaList)
+        public static void SearchByTitle(List<Media> mediaList)
         {
             List<Media> searchList = new List<Media>();
             Console.WriteLine("Please input title keyword");
