@@ -1,6 +1,12 @@
-star wars|someone|cd|True|6/9/2021 9:07:56 PM
-Star Wars 2|Someone|Cd|False|1/1/0001 12:00:00 AM
-Star Gate|Someone Else|Cd|False|1/1/0001 12:00:00 AM
-Harry Potter|Jk Rowling|Book|False|1/1/0001 12:00:00 AM
-Legally Blonde|Sdlg|Movie|False|1/1/0001 12:00:00 AM
-Stark Trek|Not Sure|Movie|False|1/1/0001 12:00:00 AM
+Stargate|Roland Emmerich|Movie|False|1/1/0001 12:00:00 AM
+Harry Potter|JK Rowling|Book|False|1/1/0001 12:00:00 AM
+Blues Brothers|John Landis|Movie|False|1/1/0001 12:00:00 AM
+Diver Down|Van Halen|Cd|False|1/1/0001 12:00:00 AM
+Sour|Olivia Rodrigo|Cd|False|1/1/0001 12:00:00 AM
+Vogue|Anna Wintour|Magazine|False|1/1/0001 12:00:00 AM
+New Yorker|Deborah Treisman|Magazine|False|1/1/0001 12:00:00 AM
+Red Pheonix|Larry Bond|Book|False|1/1/0001 12:00:00 AM
+Emma|Jane Austen|Book|False|1/1/0001 12:00:00 AM
+Phantom Tollbooth|Norton Juster|Movie|False|1/1/0001 12:00:00 AM
+Lord of the Rings|JRR Tolkien|Movie|False|1/1/0001 12:00:00 AM
+Star Wars|George Lucas|Movie|False|1/1/0001 12:00:00 AM

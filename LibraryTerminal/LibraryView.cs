@@ -12,7 +12,7 @@ namespace LibraryTerminal
             Console.WriteLine();
             for (int i = 0; i < list.Count; i++)
             {
-                DisplayMenu(i + 1, list[i].Title);
+                DisplayMediaMenu(i + 1, list[i].Title, list[i].Author);
             }
             Console.WriteLine();
         }
@@ -21,13 +21,18 @@ namespace LibraryTerminal
         public static void DisplayMedia(Media media)
         {
             Console.WriteLine();
-            Console.WriteLine($"{media.Title} is in the format {media.MediaType}\nAvailable: {!media.CheckedOut}");
+            Console.WriteLine($"{media.Title} is in the format {media.MediaType.ToLower()}.");
+        }
+
+        public static void DisplayMediaMenu(int count, string title, string author)
+        {
+            Console.WriteLine($"{count}: {title}, {author}");
         }
 
         //Displays each menu item as a single line
-        public static void DisplayMenu(int count, string listing)
+        public static void DisplayMenu(int count, string title)
         {
-            Console.WriteLine($"{count}- {listing}");
+            Console.WriteLine($"{count}- {title}");
         }
 
         //Displays a list of media.
