@@ -80,18 +80,18 @@ namespace LibraryTerminal
                         properties = text.Split('|');
                         if (properties[2] == "book")
                         {
-                            //mediaList.Add(new Book(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
+                            mediaList.Add(new Book(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
                         }
                         else if (properties[2] == "cd")
                         {
-                            //mediaList.Add(new CD(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
+                            mediaList.Add(new CD(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
                         }
                         else if (properties[2] == "magazine")
                         {
-                            //mediaList.Add(new Magazine(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
+                            mediaList.Add(new Magazine(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
                         }
                         else
-                            //mediaList.Add(new Movie(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
+                            mediaList.Add(new Movie(properties[0], properties[1], properties[2], bool.Parse(properties[3]), DateTime.Parse(properties[4])));
                         text = reader.ReadLine();
                     }
                     if (mediaList.Count > 0)
@@ -326,7 +326,7 @@ namespace LibraryTerminal
                     }
                     break;
                 case 2:
-                    //NewMedia();
+                    NewMedia();
                     break;
                 case 3:
                     if (Media.Count > 0)
