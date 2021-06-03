@@ -5,6 +5,7 @@ using System.Text;
 namespace LibraryTerminal
 {
     class Movie : Media
+    // A class that inherits properties from the parent "Media" class.
     {
         public Movie()
         {

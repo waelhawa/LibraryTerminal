@@ -6,6 +6,7 @@ namespace LibraryTerminal
     class Program
     {
         static void Main(string[] args)
+            //Main method. Starts the program chain in the mentioned methong "Preload".
         {
 <<<<<<< HEAD
             //MainMenu mainMenu = new MainMenu();

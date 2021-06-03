@@ -5,6 +5,7 @@ using System.Text;
 namespace LibraryTerminal
 {
     abstract class Media
+        // abstract class that creates different types of media.
     {
         public string Title { get; set; }
         public string Author{ get; set; }
