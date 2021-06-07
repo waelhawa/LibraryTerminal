@@ -396,11 +396,18 @@ namespace LibraryTerminal
             int menuItem = MenuSelection(1, SearchList.Count) - 1;
 
             //checking it out and setting the duedate
-            SearchList[menuItem].CheckedOut = true;
-            SearchList[menuItem].DueDate = DateTime.Now.AddDays(14);            
+            if (!SearchList[menuItem].CheckedOut)
+            {
+                SearchList[menuItem].CheckedOut = true;
+                SearchList[menuItem].DueDate = DateTime.Now.AddDays(14);
 
-            Console.WriteLine("You have checked out this item.");
-            Console.WriteLine($"Due date: {SearchList[menuItem].DueDate}");
+                Console.WriteLine("You have checked out this item.");
+                Console.WriteLine($"Due date: {SearchList[menuItem].DueDate}");
+            }
+            else
+            {
+                Console.WriteLine($"This item is not available. It will be available by {SearchList[menuItem].DueDate}");
+            }
             SearchList.Clear();
             StartHere();
         }
@@ -493,20 +500,28 @@ namespace LibraryTerminal
                 }
             }
 
-            LibraryView.DisplayMedias(CheckoutList); //diplay the checkout list
-            int menuSelection = MenuSelection(1, CheckoutList.Count) - 1;
+            if (CheckoutList.Count > 0)
+            {
+                LibraryView.DisplayMedias(CheckoutList); //diplay the checkout list
+                int menuSelection = MenuSelection(1, CheckoutList.Count) - 1;
 
-            //checking if the item is overdue
-            
-            if (DateTime.Now.CompareTo(CheckoutList[menuSelection].DueDate) >= 0)
+                //checking if the item is overdue
+
+                if (DateTime.Now.CompareTo(CheckoutList[menuSelection].DueDate) >= 0)
+                {
+                    Console.WriteLine("This item is overdue.");
+                    CheckoutList[menuSelection].CheckedOut = false;
+
+                }
+                else
+                {
+                    Console.WriteLine("Thank you for returning the item on time.");
+                    CheckoutList[menuSelection].CheckedOut = false;
+                }
+            }
+            else
             {
-                Console.WriteLine("This item is overdue.");
-                CheckoutList[menuSelection].CheckedOut = false;
-                
-            } else 
-            {
-                Console.WriteLine("Thank you for returning the item on time.");
-                CheckoutList[menuSelection].CheckedOut = false;
+                Console.WriteLine("No items checked out");
             }
 
             CheckoutList.Clear();
