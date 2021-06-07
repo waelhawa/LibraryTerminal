@@ -21,7 +21,7 @@ namespace LibraryTerminal
         public static void DisplayMedia(Media media)
         {
             Console.WriteLine();
-            Console.WriteLine($"{media.Title} is in the format {media.MediaType.ToLower()}.");
+            Console.WriteLine($"Title: {media.Title} \nAuthor: {media.Author}\nMedia Type: {media.MediaType}\n");
         }
 
         public static void DisplayMediaMenu(int count, string title, string author)
@@ -32,7 +32,7 @@ namespace LibraryTerminal
         //Displays each menu item as a single line
         public static void DisplayMenu(int count, string title)
         {
-            Console.WriteLine($"{count}- {title}");
+            Console.WriteLine($"{count}: {title}");
         }
 
         //Displays a list of media.
