@@ -549,6 +549,10 @@ namespace LibraryTerminal
                         StartHere();
                     }
                 }
+                else
+                {
+                Console.WriteLine($"This item is not available. It will be available by {Media[item-1].DueDate}");
+                }
                 MainMenu(1);
             }
             else
